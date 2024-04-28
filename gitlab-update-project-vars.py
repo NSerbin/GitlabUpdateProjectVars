@@ -27,9 +27,8 @@ def set_gitlab_ci_variable(var):
     try:
         # Check if the variable already exists
         existing_var = project.variables.get(var['key'])
-        # Update the variable if it exists
-        existing_var.value = var['value']
-        existing_var.save()
+        # Update the variable using the documented method
+        project.variables.update(var['key'], {'value': var['value']})
         print(f"Updated variable {var['key']}")
     except gitlab.exceptions.GitlabGetError:
         # Create the variable if it does not exist
