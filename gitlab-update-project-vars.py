@@ -25,9 +25,7 @@ variables = [
 # Function to add or update a variable
 def set_gitlab_ci_variable(var):
     try:
-        # Check if the variable already exists
-        existing_var = project.variables.get(var['key'])
-        # Update the variable using the documented method
+        # Attempt to update the variable directly
         project.variables.update(var['key'], {'value': var['value']})
         print(f"Updated variable {var['key']}")
     except gitlab.exceptions.GitlabGetError:
