@@ -1,70 +1,137 @@
-# GitLab Clone All Repositories
+# GitLab Scripts
 
-This script clones all repositories from a specified GitLab group (including subgroups) to a local directory. It is useful for backing up all repositories or working with them locally.
+This repository contains a set of Python scripts to interact with GitLab. Below are the details for each script:
 
-## Requirements
+## GitLab Clone All Repositories
 
+This script clones all repositories from a specified GitLab group, including those in subgroups, into a local directory.
+
+### Requirements
 - Python 3.x
 - `python-gitlab` library
-- Git
 
-## Installation
+### Setup
 
-1. Clone the repository or download the script.
+1. Clone the repository.
 2. Install the required Python package:
    ```sh
    pip install python-gitlab
    ```
 
-## Usage
-1. Set up the following variables in the script with your GitLab information:
-    ```sh
-    GITLAB_URL = 'GITLAB_URL'         # Your GitLab server URL
-    AUTH_TOKEN = 'GITLAB_TOKEN'       # Your GitLab private token
-    GROUP_ID = 'GITLAB_GROUP_ID'      # The ID of the GitLab group you want to clone
-    DESTINATION_DIR = 'PATH_FOR_REPOSITORIES'  # Path to the directory where repositories will be cloned
-    ```
-2. Run the script:
+### Configuration
+
+- Set up the following variables in the script with your GitLab information:
   ```sh
-    python gitlab-clone-all-repositories.py
+  GITLAB_URL = 'GITLAB_URL'         # Your GitLab server URL
+  AUTH_TOKEN = 'GITLAB_TOKEN'       # Your GitLab private token
+  GROUP_ID = 'GITLAB_GROUP_ID'      # The ID of the GitLab group you want to clone
+  DESTINATION_DIR = 'PATH_FOR_REPOSITORIES'  # Path to the directory where repositories will be cloned
   ```
 
-## Script Details
+### Usage
 
-### Functionality
-1. Initialize GitLab connection: Connect to the GitLab server using the provided URL and authentication token.
-2. Create directory: Ensure the destination directory for cloning repositories exists.
-3. Clone or update repository: Clone the repository if it doesn't exist locally; otherwise, skip it.
-4. Process group: Recursively clone all repositories within the specified group and its subgroups.
+- Run the script:
+  ```sh
+  python gitlab-clone-all-repositories.py
+  ```
 
-### Script Flow
-1. Main function: Fetch the root group using the provided GROUP_ID and process it.
-2. Process group function:
-2.1 Create a directory for the group.
-2.2 Fetch all projects within the group and clone them.
-2.3 Recursively process subgroups.
-3. Clone or update repository function: Clone the repository if it isn't already cloned.
 
-### Example
-Here's an example of how the script works:
+## gitlab-delete-pipelines.py
 
-1. The script fetches the root group and processes it.
-2. For each project in the group, it clones the repository if it doesn't exist locally.
-3. For each subgroup, it processes the subgroup similarly.
+This script deletes all pipelines created by a specific user in a given GitLab project.
 
-### Customization
-You can customize the script to suit your needs by modifying the following:
+### Requirements
+- Python 3.x
+- `python-gitlab` library
 
-1. Change the GITLAB_URL, AUTH_TOKEN, GROUP_ID, and DESTINATION_DIR to your specific values.
-2. Modify the clone_or_update_repo function to include additional logic if needed.
+## Setup
 
-### Troubleshooting
-1. Authentication issues: Ensure your GitLab URL and private token are correct.
-2. Permission issues: Make sure your GitLab token has sufficient permissions to access the group and repositories.
-3. Git issues: Ensure Git is installed and accessible from your command line.
+1. Clone the repository.
+2. Install the required Python package:
+   ```sh
+   pip install python-gitlab
+   ```
 
-### Contributions
-Contributions are welcome! Please open an issue or submit a pull request with your changes.
+### Configuration
 
-### License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- Before running the script, update the following variables in the script with your GitLab information:
+   ```sh
+   gitlab_url: The URL of your GitLab instance (e.g., https://gitlab.com).
+   private_token: Your GitLab personal access token.
+   project_id: The ID of the GitLab project where the pipelines should be deleted.
+   username: The username of the user whose pipelines should be deleted.
+   ```
+
+### Usage
+
+- Run the script:
+  ```sh
+  python gitlab-clone-all-repositories.py
+  ```
+
+## gitlab-get-all-projects.py
+
+This script fetches and clones all non-archived projects from a GitLab instance.
+
+### Requirements
+- Python 3.x
+- `python-gitlab` library
+- `GitPython` library
+
+## Setup
+
+1. Clone the repository.
+2. Install the required Python package:
+   ```sh
+   pip install python-gitlab GitPython
+   ```
+
+### Configuration
+
+- Before running the script, update the following variables in the script with your GitLab information:
+   ```sh
+   gitlab_url: The URL of your GitLab instance (e.g., https://gitlab.com).
+   private_token: Your GitLab personal access token.
+   project_id: The ID of the GitLab project where the pipelines details should be fetched.
+   username: The username of the user whose pipelines details should be fetched.
+   ```
+
+### Usage
+
+- Run the script:
+  ```sh
+  python gitlab-get-all-projects.py
+  ```
+
+
+## gitlab-update-project-vars.py
+
+This script updates GitLab CI variables for a specified project.
+
+### Requirements
+- Python 3.x
+- `python-gitlab` library
+
+## Setup
+
+1. Clone the repository.
+2. Install the required Python package:
+   ```sh
+   pip install python-gitlab
+   ```
+
+### Configuration
+
+- Before running the script, update the following variables in the script with your GitLab information:
+   ```sh
+   project_id: The ID of the GitLab project where the variables should be updated.
+   token: Your GitLab personal access token.
+   gitlab_url: The URL of your GitLab instance (e.g., https://gitlab.com).
+   ```
+
+### Usage
+
+- Run the script:
+  ```sh
+  python gitlab-update-project-vars.py
+  ```   
